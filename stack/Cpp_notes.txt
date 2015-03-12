@@ -1,0 +1,103 @@
+Member class object constructor. If there is more than one member class object, the constructors are invoked in the order in which the objects are delcared whithin the clas, not in the order in which they are listed in the member initialization list.
+
+The derived class constructor
+
+
+As a general rule, the derived class constructor should never assign a value to a base class data member directly, but rather pass the value to the appropriate base class constructor.
+
+A derived class does not inherit the constructors of its base class
+
+A derived class can invoke legally onely the constructor of its immediate base class (virtual inheritance provides an exception to his rule)
+
+
+The base class destructor, in general, should not be made protected.
+
+The behavior of the destructor under inheritance is as follows: the destructor of the derived class, the destructor of the immediate base class is invoked statically
+
+
+override the virtual mechanism
+e.g. 
+Query *pquery = new NameQuery( "dumbo" );
+
+// invokes isA() dynamically thru virtual method
+// the NameQuery::isA() instance is invoked
+pquery->isA();
+
+// invokes isA() statically at compile-time
+// the Query::isA() instance is invoked
+pquery->Queue::isA();
+
+
+A virtual new operator
+e.g.
+NotQuery *pnq
+// set pnq ...
+
+// how do we duplicate pq?
+NotQuery *pnq2 = new NotQuery( *pnq );
+
+
+Query *pq = pnq->op();
+
+class NameQuery : public Query {
+public:
+  virtual NameQuery *clone() { return new NameQuery( *this ); }
+
+// ...
+};
+
+Query *pq = new NameQuery( "Broch" );
+Query *pq2 = pq->clone();
+
+NameQuery *pnq = new NameQuery( "Rilke" );
+NameQuery *pq2 = pnq->clone();
+
+If the base instance of a virtual function returns a class type (or a pointer or a reference to a class type), then
+the derived instance may return a class publicly derived from the class returned by the base class instance
+(or a pointer or a reference to a class type).
+
+C++ syte string
+
+#include <string>
+
+string st( "The expense of spirit\n" );
+
+# string length
+st.size()
+
+# test empty
+st.empty()
+
+# string copy
+string st3(st);
+
+# string comparison
+if (st3 == st)  
+
+# string concatenation
+const char *pc = ", ";
+string st1( "hello" );
+string st2( "world" );
+string s3 = s1 + pc + s2 + "\n";
+
+# convert C-style string to a string object
+string s1;
+const char *pc = "a char array";
+s1 = pc;
+
+# convert a string object to C-style string 
+# c_str returns a pointer to constant array
+const char *str = s1.c_str();
+
+# replace chars in a string
+replace(str.begin(), str.end(), '.', '_');
+
+
+Overloaded operator
+1. When an overloaded operator is a class memeber, the class member operatoris only invoked when the oeprator is used with a left operand of another type, then the overloaded operator must be a namespace operator.
+
+2. "=", "[]", "()" and "->" must be defined as class member operators. 
+
+3. flower == "lily" is rewritten by the compiler as flower.operator=="lily"
+and flower, the left operand, is referred to within the definition of the 
+member overloaded operator through the 'this' pointer.
