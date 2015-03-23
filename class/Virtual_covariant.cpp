@@ -15,42 +15,70 @@ class Base {
 
 class Derived : public Base {
 	public:
+	~Derived() { 
+		cout << "~Derived()" << endl;
+  }
+
 	Derived *Copy() const {
 		cout << "Derived::Copy()" << endl;
 		return new Derived(*this);
 	}
 };
 
+// Base is a concrete class instead of an abstract class
 int main() {
-  // Base instances
-  //Base a;
-  //Base *b = a.Copy();
-  //delete (b);
 
 	Derived d;
 
-  // convert from derived to base
-	Base &b = d;
+  //----------------------
+  // virtual disabled 
+	Base b = d;
+	Base *b0 = b.Copy();
+	delete b0;
 
-	Base *b2 = b.Copy();
+  //----------------------
+  // virtual enabled 
+	Base &b1 = d;
+
+  // Derive's copy
+	Base *b2 = b1.Copy();
 	delete b2;
 
+  // Derive's copy
 	Base *b3 = d.Copy();
 	delete b3;
 
-  // derived to derived
+  // normal derived to derived
 	Derived *d2 = d.Copy();
 	delete d2;
 
-  //----------------------------------
-  // !invalid! 
-  // convert from base to derived
-  //----------------------------------
-	//Derived *d3 = b.Copy();
+  // invalid convert from base to derived
+	//Derived *d3 = b1.Copy();
 	//delete d3;
 
-	Derived *d4 = dynamic_cast<Derived*>( b.Copy() );
-	delete d4;
+  // valid convert from base to derived
+	Derived *d3 = dynamic_cast<Derived*>(b1.Copy());
+	delete d3; 
+
+    
+  // release d3 instance
+  // ~Derived
+  // Base
+
+  // release b instance
+  // Base
+
+  // release d instance
+  // ~Derived
+  // Base
+
+  /*
+  // Base instances
+  Base a;
+  Base *b = a.Copy();
+  delete (b);
+  */
+
 
 	return 0;
 }

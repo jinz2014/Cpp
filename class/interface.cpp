@@ -12,6 +12,7 @@ class FileErrorLog: public ErrorLogInterface {
     virtual bool OpenLog(const char *strFilename) {}
     virtual bool CloseLog() {}
     virtual bool WriteError(const char *strErrorMessage) {}
+    void print() {}
 };
 
 double MySqrt(double dValue, ErrorLogInterface& cLog)

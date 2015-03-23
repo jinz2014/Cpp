@@ -6,42 +6,50 @@
 
 using namespace std;
 
-  void display(vector<int> &v) {
-	vector<int>::iterator iter;
-	for (iter = v.begin(); iter != v.end(); iter++)
-		cout << *iter << " ";
-	cout << endl;
-  }
+void display(string name, const vector<int> &v) {
+  cout << name << " ";
+  vector<int>::const_iterator c_iter;
+  for (c_iter = v.begin(); c_iter != v.end(); c_iter++)
+    cout << *c_iter << " ";
+  cout << endl;
+}
 
-void main() {
+
+int main() {
+
+  // an empty vector
+  vector<int> E = vector<int>();
+  cout << "vector size : " << E.size() << endl;
+
+  // a simple way
   vector<int> A(5, -1);
-  const vector<int> B(2, 1);
+
+  // a verbose way
+  //vector<int> A = vector<int>(5, -1);
 
   cout << "vector size : " << A.size() << endl;
+
+  // random access of vector
+  for (int i = 0; i < 5; i++)
+    cout << A[i] << " ";
+  cout << endl;
 
   //---------------------------------------------------------
   // Use (constant) iterator to iterate over (constant) 
   // vector or deque
   //---------------------------------------------------------
-  for (int i = 0; i < 5; i++)
-    cout << A[i] << " ";
-  cout << endl;
 
-  vector<int>::iterator iter;
-  for (iter = A.begin(); iter != A.end(); iter++)
-    cout << *iter << " ";
-  cout << endl;
+  display("A", A);
 
+  /* a pointer variant
   vector<int> *p = &A;
   for (iter = p->begin(); iter !=p->end(); iter++)
     cout << *iter << " ";
   cout << endl;
+  */
 
-  // must use constant iterator for a constant vector
-  vector<int>::const_iterator c_iter;
-  for (c_iter = B.begin(); c_iter != B.end(); c_iter++)
-    cout << *c_iter << " ";
-  cout << endl;
+  const vector<int> B(2, 1);
+  display("B", B);
 
   //---------------------------------------------------------
   // container insert 
@@ -51,27 +59,32 @@ void main() {
   A.insert(A.begin()+A.size()/2, iarr, iarr+3);
   A.insert(A.end(), 5);
   A.insert(A.begin()+A.size()/2, B.begin(), B.end());
-  display(A);
+  display("A", A);
 
   //---------------------------------------------------------
   // container assignment 
   //---------------------------------------------------------
   vector<int> C = B;
-  for (int i = 0; i < 2; i++) {
-	  A.swap(C);
-	  display(A);
-	  display(C);
-  }
+  vector<int> D(B);
+  C.insert(C.end(), B.begin(), B.end());
+	display("C", C);
+	display("D", D);
+	display("B", B);
+
+	//A.swap(C);
+
 
 
   //---------------------------------------------------------
   // container search using genetic algorithms <algorithm>
   //---------------------------------------------------------
   
+  vector<int>::iterator iter;
   iter = find(A.begin(), A.end(), 2);
   if (iter != A.end()) cout << "find 2" << endl;  // 2
 
   iter = find(A.begin(), A.end(), 7);
   if (iter != A.end()) cout << "find 7" << endl;  // 0
 
+  return 0;
 }
