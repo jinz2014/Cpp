@@ -11,7 +11,8 @@ private:
  
 public:
     Base(int nValue, int nValue2)
-        : m_nValue(nValue), m_nValue2(nValue2)
+        : m_nValue(nValue), 
+          m_nValue2(nValue2)
     {}
  
 protected:

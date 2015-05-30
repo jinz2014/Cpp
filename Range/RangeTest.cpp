@@ -10,7 +10,7 @@ using namespace std;
 
 int main()
 {
-	cout << "hello vc 2010 " << endl;
+   cout << "hello vc 2010 " << endl;
 
 	// The default type is double
 	double closingPrice (45.7);
@@ -48,6 +48,6 @@ int main()
   Range<float>bullish2(bullish);
   assert(bullish2.get_lo() == 30);
   assert(bullish2.get_hi() == 80);
-
-	return 0;
+  
+  return 0;
 }

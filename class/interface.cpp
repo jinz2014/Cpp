@@ -15,6 +15,7 @@ class FileErrorLog: public ErrorLogInterface {
     void print() {}
 };
 
+// cLog morph
 double MySqrt(double dValue, ErrorLogInterface& cLog)
 {
     if (dValue < 0.0)

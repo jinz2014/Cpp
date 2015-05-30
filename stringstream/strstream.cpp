@@ -21,8 +21,13 @@ int main() {
   istr >> dval >> ival; // extraction
   cout << dval << endl;
   cout << ival << endl;
-  cout << "c strlen  = " << strlen(buf) << endl; // 5
-  cout << "c++ strlen  = " << char_traits<char>::length(buf) << endl; // 5
+
+  cout << "call c's strlen  = " 
+       << strlen(buf) << endl; // 5
+
+  cout << "call c++'s strlen  = " 
+       << char_traits<char>::length(buf) << endl; // 5
+
   cout << "sizeof  = " << sizeof buf << endl; // 20
 
   // dynamic buffer

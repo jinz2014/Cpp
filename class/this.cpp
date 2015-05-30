@@ -5,7 +5,8 @@ class Calc {
 		int _val;
 	public:
 		Calc(int val) {
-			_val = val;
+			this->_val = val;
+			(*this)._val = val + val;
 		}
 
 		// compiler converts to Calc& Add(Calc* const this, int val) {
@@ -26,7 +27,7 @@ class Calc {
 int main() {
 	Calc c(1);
 	c.Add(5).Sub(5);
-	assert (c.get() == 1);  
+	assert (c.get() == 2);  
 	return 0;
 }
 			
