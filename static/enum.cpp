@@ -32,7 +32,7 @@ class static_enum {
     }
 };
 
-// must be defined outside the class header file
+// nonconst static member must be defined outside the class header file
 index_t static_enum::idx = R;
  
 // We'll start generating IDs at 1
