@@ -6,10 +6,11 @@
 using namespace std;
 class Storage
 {
-private:
+  private:
     int m_nValue;
     double m_dValue;
-public:
+
+  public:
     Storage(int nValue, double dValue)
     {
         m_nValue = nValue;
@@ -22,18 +23,23 @@ public:
  
 class Display
 {
-private:
+  private:
     bool m_bDisplayIntFirst;
  
-public:
-    Display(bool bDisplayIntFirst) { m_bDisplayIntFirst = bDisplayIntFirst; }
+  public:
+    Display(bool bDisplayIntFirst) { 
+      m_bDisplayIntFirst = bDisplayIntFirst;
+    }
  
+    // because Display is a friend of Storage 
     void DisplayItem(Storage &cStorage)
     {
         if (m_bDisplayIntFirst)
-            std::cout << cStorage.m_nValue << " " << cStorage.m_dValue << std::endl;
+            cout << cStorage.m_nValue << " " 
+                 << cStorage.m_dValue << endl;
         else // display double first
-            std::cout << cStorage.m_dValue << " " << cStorage.m_nValue << std::endl;
+            cout << cStorage.m_dValue << " " 
+                 << cStorage.m_nValue << endl;
     }
 };
 
