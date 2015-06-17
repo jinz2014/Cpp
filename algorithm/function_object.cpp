@@ -1,19 +1,56 @@
 #include <iostream>
+#include <vector>
+#include <functional>
+#include <algorithm>
+#include <cmath>
 
 using namespace std;
 
-class gt_n {
-  int value;
+class GreaterThan {
+  int val;
 
   public:
-  gt_n(int val) : value(val) {}
-  bool operator()(int n) { return n > value; }
+  GreaterThan(int val) : val(val) {}
+  bool operator()(int n) { return n > val; }
+};
+
+// MSDN examples
+class less_mag: public binary_function<double, double, bool> {
+  public:
+    bool operator() (double x, double y) {
+      return fabs(x) < fabs(y);
+    }
+};
+
+class adder: public unary_function<double, void> {
+  public:
+    int sum;
+    adder() : sum(0) {}
+    void operator() (double o) {
+      sum += o;
+    }
 };
 
 int main() {
-  gt_n f(4);
-  cout << f(3) << endl;
+  GreaterThan f1(4); // initilization
 
-  gt_n fo = gt_n(3);
-  cout << fo(4) << endl;
+  cout << f1(3) << endl;
+
+  GreaterThan f2 = GreaterThan(3);
+  cout << f2(4) << endl;
+
+
+  //
+  vector<int> v;
+  v.push_back(3);
+  v.push_back(1);
+  v.push_back(-1);
+  v.push_back(4);
+
+  sort(v.begin(), v.end(), less_mag());
+
+  adder result = for_each(v.begin(), v.end(), adder());
+  cout << "The sum is " << result.sum;
+
+  return 0;
 }
