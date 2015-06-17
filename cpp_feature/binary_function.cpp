@@ -16,9 +16,9 @@ struct my_binary_function {
 template <class T>
 class Average : my_binary_function<T, T, T> {
   public:
-    typename my_binary_function<T,T,T>::res_type operator() (
-    typename my_binary_function<T,T,T>::arg1_type a, 
-    typename my_binary_function<T,T,T>::arg2_type b) {
+    typename my_binary_function<T,T,T>::res_type operator() ( 
+        typename my_binary_function<T,T,T>::arg1_type a, 
+        typename my_binary_function<T,T,T>::arg2_type b) {
       return (a + b) * 0.5;
     }
 };
@@ -27,8 +27,8 @@ template <class T>
 class Equal : my_binary_function<T, T, bool> {
   public:
     typename my_binary_function<T,T,bool>::res_type operator() (
-    typename my_binary_function<T,T,bool>::arg1_type a, 
-    typename my_binary_function<T,T,bool>::arg2_type b) {
+        typename my_binary_function<T,T,bool>::arg1_type a, 
+        typename my_binary_function<T,T,bool>::arg2_type b) {
       return a == b ? true : false;
     }
 };

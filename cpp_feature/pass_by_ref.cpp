@@ -31,7 +31,7 @@ class Derived : public Base {
 			cout << get_name() << endl;
 			w.display(); // virtual (Derived's display)
 		}
-		void nameDisplay2(Base *w) const {
+		void nameDisplay(Base *w) const {
 			cout << get_name() << endl;
 			w->display(); // virtual (Derived's display)
 		}
@@ -44,6 +44,6 @@ int main() {
 	Derived d2("D2");
 	d1.nameDisplay(d2);
 	d1.nameDisplay1(d2);
-	d1.nameDisplay2(&d2);
+	d1.nameDisplay(&d2);
 }
 
