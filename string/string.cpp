@@ -11,6 +11,10 @@
 
 using namespace std;
 
+int my_bad_strlen(char *s) {
+  return 1;
+}
+
 int main() {
 	string s1 ("Hello World");
 	string s2="Bye World";
@@ -36,5 +40,9 @@ int main() {
 	for (it = s3.begin(); it != s3.end(); it++)
 		cout << (*it);
 	cout << endl;
+
+  // To deal with the incompatiable argument type
+  //my_bad_strlen(sp);
+  my_bad_strlen(const_cast<char*>(sp));
 }
 
