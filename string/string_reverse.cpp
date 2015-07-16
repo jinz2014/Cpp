@@ -7,6 +7,26 @@
 
 using namespace std;
 
+bool operator==(const string& lhs, const char *rhs) {
+  string s2 = rhs;
+  if (lhs.compare(s2) == 0) 
+    return true;
+   return false;
+}
+
+bool operator==(const string &lhs, const string& rhs) {
+  if (lhs.compare(rhs) == 0) 
+    return true;
+   return false;
+}
+
+bool operator==(const char *lhs, const string& rhs) {
+  string s1 = lhs;
+  if (s1.compare(rhs) == 0) 
+    return true;
+   return false;
+}
+
 // Pass by reference, not pass by value
 void reverse(string& s) {
   for (int i = 0; i < s.size()/2; i++) {
@@ -29,6 +49,7 @@ int main() {
 
   cout << s1 << endl;
   assert(s1.compare(s2) == 0);
+  assert(s2 == "olleH");
     
 }
 
