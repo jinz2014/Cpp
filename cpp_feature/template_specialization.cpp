@@ -7,13 +7,20 @@ template <class T>
 class mycontainer {
     T element;
   public:
-    mycontainer (T arg) {element=arg;}
-    T increase () {return ++element;}
+    mycontainer (T arg) {
+      element=arg;
+    }
+
+    T increase () {
+      T v = ++element;
+      std::cout << v << std::endl; // overloaded operator<<
+      return v;
+    }
 };
 
 // class template specialization:
 template <>
-class mycontainer <char> {
+class mycontainer<char> {
     char element;
   public:
     mycontainer (char arg) {element=arg;}
