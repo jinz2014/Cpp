@@ -86,5 +86,18 @@ int main() {
   iter = find(A.begin(), A.end(), 7);
   if (iter != A.end()) cout << "find 7" << endl;  // 0
 
+
+  //---------------------------------------------------------
+  // 2D container as a matrix
+  //---------------------------------------------------------
+  int r = 2, c = 3;
+  typedef vector<int> Row; // One row of the matrix
+  typedef vector<Row> Matrix; // Matrix: a vector of rows
+  Matrix matrix(r,Row(c)); // The same matrix as above
+  matrix[0][1] = 1;
+  matrix[1][1] = 2;
+  //matrix[1][3] = 3; // out-of-bound
+  //matrix[2][1] = 3;
+
   return 0;
 }
