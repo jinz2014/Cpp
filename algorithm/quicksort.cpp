@@ -18,7 +18,7 @@
        return sorted_lower+ pivot + sorted_higher
 
    1 quicksort (none in-place implementation using list
-     distance(list.begin(), list.end()) is equivalent
+     std::distance(std::list.begin(), ::list.end()) is equivalent
      to size()
  */
 
@@ -30,8 +30,7 @@
 
 using namespace std;
 
-list<int> 
-quicksort (list<int> lst) {
+list<int> quicksort (list<int> lst) {
 
   if (distance(lst.begin(), lst.end()) < 2)
     return lst;
