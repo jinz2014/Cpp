@@ -5,20 +5,35 @@
 
 using namespace std;
 
+class CharArray {
+  public:
+    // convert to a mutable char array
+    CharArray(string s) {
+      c = new char [s.length()+1];
+      strcpy(c, s.c_str());
+    }
+
+    ~CharArray() {
+      delete[] c;
+    }
+
+    char* get() { return c; }
+
+  private:
+    char *c;
+
+};
+
+
 int main () {
   string str ("Please split this sentence into tokens");
-
-  // convert to a mutable char array
-  char * cstr = new char [str.length()+1];
-  strcpy (cstr, str.c_str());
+  CharArray c(str);
 
   // cstr now contains a c-string copy of str
-  char * p = strtok (cstr," ");
+  char * p = strtok (c.get(), " ");
   while (p != NULL) {
     cout << p << '\n';
-    p = strtok(NULL," ");
+    p = strtok(NULL, " ");
   }
-
-  delete[] cstr;
   return 0;
 }
