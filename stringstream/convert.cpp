@@ -26,8 +26,11 @@ int main() {
 
   string ns = "123";
   int m = StringToNumber<int>(ns);
-  //int m = StringToNumber(ns);
+  cout << ns << " " << m << endl;
 
-  cout << s << " " << m << endl;
+  // TODO convert a hex string to integer
+  ns = "FF";
+  m = StringToNumber<int>(ns);
+  cout << ns << " " << m << endl;
 }
 
