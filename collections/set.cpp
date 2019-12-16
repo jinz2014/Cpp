@@ -5,21 +5,42 @@
 
 using namespace std;
 
-  void display(set<string> &v) {
-	set<string>::iterator iter;
+template<class T>
+void display(set<T> &v) {
+	typename set<T>::iterator iter;
 	for (iter = v.begin(); iter != v.end(); iter++)
 		cout << (*iter) << endl;
 	cout << endl;
-  }
+}
+
+void test2 () {
+	set<int> int_set;
+	set<int>::iterator it;
+	pair<set<int>::iterator, bool> ret;
+	for (int i=1; i<=5; i++) int_set.insert(i*10);
+	ret = int_set.insert(20);
+	if (ret.second == false) it=ret.first;  // 'it' now points to element 20
+	int_set.insert(it, 25);
+	int_set.insert(it, 24);
+	int_set.insert(it, 26);
+	int myints[] = {5,10,15};
+	int_set.insert(myints, myints+3);
+	display(int_set);
+}
+
+void test1() {
+	set<string> str_set;
+	str_set.insert("yesterday");
+	str_set.insert("today");
+	str_set.insert("tomorrow");
+	str_set.insert("Today");
+	str_set.insert("tomorrow");
+	display(str_set);
+}
 
 int main() {
-	set<string> my_set;
-	my_set.insert("yesterday");
-	my_set.insert("today");
-	my_set.insert("tomorrow");
-	my_set.insert("Today");
-	my_set.insert("tomorrow");
-	display(my_set);
-  return 0;
+	test1();
+	test2();
+	return 0;
 }
 
